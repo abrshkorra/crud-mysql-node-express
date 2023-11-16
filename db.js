@@ -6,6 +6,4 @@ const mysqlPool = mysql.createPool({
     database: 'users'
 })
 
-mysqlPool.query("select * from users")
-.then(data => console.log(data))
-.catch(err => console.log(err))
+module.exports = mysqlPool
