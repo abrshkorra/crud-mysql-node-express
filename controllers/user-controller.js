@@ -11,7 +11,18 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     const user = await service.getUserById(req.params.id)
-    res.send(user)
+    if (user.length == 0)
+        res.status(404).json('no record by the given id')
+    else
+        res.send(user)
+})
+
+router.delete('/:id', async (req, res) => {
+    const affectedRows = await service.deleteUser(req.params.id)
+    if (affectedRows == 0)
+        res.status(404).json('no record by the given id')
+    else
+        res.send('user deleted.')
 })
 
 module.exports = router
