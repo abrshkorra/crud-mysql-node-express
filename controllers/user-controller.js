@@ -25,4 +25,9 @@ router.delete('/:id', async (req, res) => {
         res.send('user deleted.')
 })
 
+router.post('/', async (req, res) => {
+    const affectedRows = await service.addorEditUser(req.body)
+    res.status(201).send("add or edit successful")
+})
+
 module.exports = router

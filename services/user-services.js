@@ -11,6 +11,12 @@ module.exports.getUserById = async (id) => {
 }
 
 module.exports.deleteUser = async (id) => {
-    const [user] = await db.query("delete from users where user_id = ?", [id])
-    return user.affectedRows;
+    const [{affectedRows}] = await db.query("delete from users where user_id = ?", [id])
+    return affectedRows;
 }
+
+module.exports.addorEditUser = async (obj, id = 0) => {
+    const [{affectedRows}] = await db.query("call add_or_edit(?,?,?,?)", [id, obj.email, obj.password, obj.name]);
+    return affectedRows;
+}
+
