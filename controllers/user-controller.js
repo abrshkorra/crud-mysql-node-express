@@ -4,10 +4,10 @@ router = express.Router()
 const db = require('../db')
 
 
-router.get('/', (req, res) => {
-    db.query("select * from users")
-    .then(data => res.send(data[0]))
+router.get('/', async (req, res) => {
+    const rows = await db.query("select * from users")
     .catch(data => console.log(err))
+    res.send(rows)
 })
 
 module.exports = router
