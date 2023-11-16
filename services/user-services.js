@@ -1,11 +1,11 @@
 const db = require('../db')
 
 module.exports.getAllUsers = async () => {
-    const [rows] = await db.query("select * from users")
-    return rows;
+    const [users] = await db.query("select * from users")
+    return users;
 }
 
 module.exports.getUserById = async (id) => {
-    const [rows] = await db.query("select * from users where user_id = " + id)
-    return rows;
+    const [user] = await db.query("select * from users where user_id = ?", [id])
+    return user;
 }
