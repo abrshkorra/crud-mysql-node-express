@@ -9,4 +9,9 @@ router.get('/', async (req, res) => {
     res.send(users)
 })
 
+router.get('/:id', async (req, res) => {
+    const user = await service.getUserById(req.params.id)
+    res.send(user)
+})
+
 module.exports = router
