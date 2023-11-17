@@ -26,8 +26,14 @@ router.delete('/:id', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    const affectedRows = await service.addorEditUser(req.body)
-    res.status(201).send("add or edit successful")
-})
+    try {
+        const affectedRows = await service.addorEditUser(req.body);
+        res.status(201).json({ message: "Add or edit successful", affectedRows });
+    } catch (error) {
+        console.error("Error adding or editing user:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
 
 module.exports = router

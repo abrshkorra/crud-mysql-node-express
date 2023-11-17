@@ -16,7 +16,8 @@ module.exports.deleteUser = async (id) => {
 }
 
 module.exports.addorEditUser = async (obj, id = 0) => {
-    const [{affectedRows}] = await db.query("call add_or_edit(?,?,?,?)", [id, obj.email, obj.password, obj.name]);
+    const [{affectedRows}] = await db.query("call users.add_or_edit(?,?,?,?)", [id, obj.email, obj.password, obj.name]);
     return affectedRows;
 }
+
 
