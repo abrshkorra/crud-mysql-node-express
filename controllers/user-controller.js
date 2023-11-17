@@ -36,4 +36,12 @@ router.post('/', async (req, res) => {
 });
 
 
+router.put('/:id', async (req, res) => {
+    const affectedRows = await service.addorEditUser(req.body, req.params.id)
+    if (affectedRows == 0)
+        res.status(404).json('no record with given id : ' + req.params.id)
+    else
+        res.send('updated successfully.')
+})
+
 module.exports = router

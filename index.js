@@ -17,9 +17,9 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something went wrong!')
 })
 
-db.query("SELECT * FROM users")
-  .then(data => console.log(data))
-  .catch(err => console.log(err))
-  .finally(() => {
+// db.query("SELECT * FROM users")
+//   .then(data => console.log(data))
+//   .catch(err => console.log(err))
+//   .finally(() => {
     app.listen(port, () => console.log('Server started at ' + port));
-  });
+  // });
